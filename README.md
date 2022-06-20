@@ -7,7 +7,6 @@ Try to finish as much TODO's as possible. These are found within the React app c
 
 In order to start this assignment you need to:
 - ⬇️ Clone this repository
-- 🌲 Create a separate branch called `feat/todo-assignment`
 - 👨‍💻 Open up your preferred editor (mine is VS Code)
 - 🏃🏻‍♂️ Run `npm install` and then `npm start`
 - 🔎  Search for all `TODO:` strings within the `/src` folder and start building!
@@ -34,10 +33,6 @@ Here is a list of all the TODO's to make life a bit easier:
 - [ ] Prevent duplicate addresses.
 - [ ] Write a state update which removes an address from the addresses array.
 
-## Submitting assignment
-You can submit your assignment by creating a merge request for your `feat/todo-assignment` branch. That's it, good luck! 🚀
-
-> If any questions might arise about the assignment please contact l.zimmerman@wearetriple.com
 
 
 
