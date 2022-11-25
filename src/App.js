@@ -16,11 +16,11 @@ function App() {
    * Form fields states
    * TODO: Write a custom hook to set form fields in a more generic way:
    * - Hook must expose an onChange handler to be used by all <InputText /> and <Radio /> components
-   * - Hook must expose all text form field values, like so: { zipCode: '', houseNumber: '', ...etc }
+   * - Hook must expose all text form field values, like so: { postCode: '', houseNumber: '', ...etc }
    * - Remove all individual React.useState
-   * - Remove all individual onChange handlers, like handleZipCodeChange for example
+   * - Remove all individual onChange handlers, like handlePostCodeChange for example
    */
-  const [zipCode, setZipCode] = React.useState("");
+  const [postCode, setPostCode] = React.useState("");
   const [houseNumber, setHouseNumber] = React.useState("");
   const [firstName, setFirstName] = React.useState("");
   const [lastName, setLastName] = React.useState("");
@@ -38,7 +38,7 @@ function App() {
   /**
    * Text fields onChange handlers
    */
-  const handleZipCodeChange = (e) => setZipCode(e.target.value);
+  const handlePostCodeChange = (e) => setPostCode(e.target.value);
 
   const handleHouseNumberChange = (e) => setHouseNumber(e.target.value);
 
@@ -51,8 +51,8 @@ function App() {
   const handleAddressSubmit = async (e) => {
     e.preventDefault();
 
-    /** TODO: Fetch addresses based on houseNumber and zipCode
-     * - Example URL of API: http://api.postcodedata.nl/v1/postcode/?postcode=1211EP&streetnumber=60&ref=domeinnaam.nl&type=json
+    /** TODO: Fetch addresses based on houseNumber and postCode using the local BE api
+     * - Example URL of API: /api/getAddresses?postcode=1345&streetnumber=350
      * - Handle errors if they occur
      * - Handle successful response by updating the `addresses` in the state using `setAddresses`
      * - Make sure to add the houseNumber to each found address in the response using `transformAddress()` function
@@ -84,7 +84,7 @@ function App() {
           Create your own address book!
           <br />
           <small>
-            Enter an address by zipcode add personal info and done! 👏
+            Enter an address by postcode add personal info and done! 👏
           </small>
         </h1>
         {/* TODO: Create generic <Form /> component to display form rows, legend and a submit button  */}
@@ -93,10 +93,10 @@ function App() {
             <legend>🏠 Find an address</legend>
             <div className={styles.formRow}>
               <InputText
-                name="zipCode"
-                onChange={handleZipCodeChange}
-                placeholder="Zip Code"
-                value={zipCode}
+                name="postCode"
+                onChange={handlePostCodeChange}
+                placeholder="Post Code"
+                value={postCode}
               />
             </div>
             <div className={styles.formRow}>

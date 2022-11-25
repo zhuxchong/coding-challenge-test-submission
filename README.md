@@ -23,7 +23,7 @@ Here is a list of all the TODO's to make life a bit easier:
 
 ### React
 - [ ] Write a custom hook to set form fields in a more generic way.
-- [ ] Fetch addresses based on houseNumber and zipCode.
+- [ ] Fetch addresses based on houseNumber and postCode.
 - [ ] Create generic `<Form />` component to display form rows, legend and a submit button.
 - [ ] Create an `<ErrorMessage />` component for displaying an error message.
 - [ ] Add a button to clear all form fields. Button must look different from the default primary button, see design.
