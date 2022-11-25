@@ -9,7 +9,7 @@ import Section from "./ui/components/Section/Section";
 import transformAddress from "./core/models/address";
 import useAddressBook from "./ui/hooks/useAddressBook";
 
-import "./App.css";
+import * as styles from "../styles/App.module.css";
 
 function App() {
   /**
@@ -91,7 +91,7 @@ function App() {
         <form onSubmit={handleAddressSubmit}>
           <fieldset>
             <legend>🏠 Find an address</legend>
-            <div className="form-row">
+            <div className={styles.formRow}>
               <InputText
                 name="zipCode"
                 onChange={handleZipCodeChange}
@@ -99,7 +99,7 @@ function App() {
                 value={zipCode}
               />
             </div>
-            <div className="form-row">
+            <div className={styles.formRow}>
               <InputText
                 name="houseNumber"
                 onChange={handleHouseNumberChange}
@@ -128,7 +128,7 @@ function App() {
           <form onSubmit={handlePersonSubmit}>
             <fieldset>
               <legend>✏️ Add personal info to address</legend>
-              <div className="form-row">
+              <div className={styles.formRow}>
                 <InputText
                   name="firstName"
                   placeholder="First name"
@@ -136,7 +136,7 @@ function App() {
                   value={firstName}
                 />
               </div>
-              <div className="form-row">
+              <div className={styles.formRow}>
                 <InputText
                   name="lastName"
                   placeholder="Last name"

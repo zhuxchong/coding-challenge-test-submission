@@ -10,7 +10,10 @@ export const configureStore = () => {
   let composedEnhancers = compose(middlewareEnhancer);
 
   /** Don't add Redux devtools on production. */
-  if (typeof window.__REDUX_DEVTOOLS_EXTENSION__ === "function") {
+  if (
+    typeof window !== "undefined" &&
+    typeof window.__REDUX_DEVTOOLS_EXTENSION__ === "function"
+  ) {
     composedEnhancers = compose(
       middlewareEnhancer,
       // eslint-disable-next-line no-underscore-dangle
