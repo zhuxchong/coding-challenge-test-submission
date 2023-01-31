@@ -33,6 +33,7 @@ Here is a list of all the TODO's to make life a bit easier:
 - [ ] Prevent duplicate addresses.
 - [ ] Write a state update which removes an address from the addresses array.
 
-
+### Bonus
+- [ ] Refactor the code in pages/api/getAddresses so that there is no duplication of logic for street number and postcode digit checking
 
 
