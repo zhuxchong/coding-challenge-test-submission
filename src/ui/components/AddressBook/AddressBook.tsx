@@ -1,15 +1,16 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { useAppSelector } from '@/app/hooks';
 
-import Address from "../Address/Address";
-import Button from "../Button/Button";
-import Card from "../Card/Card";
-import useAddressBook from "../../hooks/useAddressBook";
-
-import $ from "./AddressBook.module.css";
+import useAddressBook from '../../hooks/useAddressBook';
+import Address from '../Address/Address';
+import Button from '../Button/Button';
+import Card from '../Card/Card';
+import $ from './AddressBook.module.css';
+import { selectAddress } from './addressBookSlice';
 
 const AddressBook = () => {
-  const addresses = useSelector((state) => state.addressBook.addresses);
+  const addresses = useAppSelector(selectAddress);
   const { removeAddress, loadSavedAddresses, loading } = useAddressBook();
 
   React.useEffect(() => {
@@ -31,13 +32,10 @@ const AddressBook = () => {
                     <h3>
                       {address.firstName} {address.lastName}
                     </h3>
-                    <Address address={address} />
+                    <Address {...address} />
                   </div>
                   <div className={$.remove}>
-                    <Button
-                      variant="secondary"
-                      onClick={() => removeAddress(address.id)}
-                    >
+                    <Button variant="secondary" onClick={() => removeAddress(address.id)}>
                       Remove
                     </Button>
                   </div>

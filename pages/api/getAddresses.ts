@@ -1,26 +1,23 @@
-import type { NextApiRequest, NextApiResponse } from "next";
+import type { NextApiRequest, NextApiResponse } from 'next';
 
-import generateMockAddresses from "../../src/utils/generateMockAddresses";
+import generateMockAddresses from '../../src/utils/generateMockAddresses';
 
-export default async function handle(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+export default async function handle(req: NextApiRequest, res: NextApiResponse) {
   const {
-    query: { postcode, streetnumber },
+    query: { postcode, streetnumber }
   } = req;
 
   if (!postcode || !streetnumber) {
     return res.status(400).send({
-      status: "error",
-      errormessage: "Postcode and street number fields mandatory!",
+      status: 'error',
+      errormessage: 'Postcode and street number fields mandatory!'
     });
   }
 
   if (postcode.length < 4) {
     return res.status(400).send({
-      status: "error",
-      errormessage: "Postcode must be at least 4 digits!",
+      status: 'error',
+      errormessage: 'Postcode must be at least 4 digits!'
     });
   }
 
@@ -30,8 +27,8 @@ export default async function handle(
 
   if (isNaN(postCode)) {
     return res.status(400).send({
-      status: "error",
-      errormessage: "Postcode must be all digits!",
+      status: 'error',
+      errormessage: 'Postcode must be all digits!'
     });
   }
 
@@ -39,24 +36,21 @@ export default async function handle(
 
   if (isNaN(streetNumber)) {
     return res.status(400).send({
-      status: "error",
-      errormessage: "Street number must be all digits!",
+      status: 'error',
+      errormessage: 'Street number must be all digits!'
     });
   }
 
-  const mockAddresses = generateMockAddresses(
-    postcode as string,
-    streetnumber as string
-  );
+  const mockAddresses = generateMockAddresses(postcode as string, streetnumber as string);
   if (mockAddresses) {
     return res.status(200).json({
-      status: "ok",
-      details: mockAddresses,
+      status: 'ok',
+      details: mockAddresses
     });
   }
 
   return res.status(404).json({
-    status: "error",
-    errormessage: "No results found!",
+    status: 'error',
+    errormessage: 'No results found!'
   });
 }

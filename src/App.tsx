@@ -1,15 +1,15 @@
-import React from "react";
+import React from 'react';
 
-import Address from "./ui/components/Address/Address";
-import AddressBook from "./ui/components/AddressBook/AddressBook";
-import Button from "./ui/components/Button/Button";
-import InputText from "./ui/components/InputText/InputText";
-import Radio from "./ui/components/Radio/Radio";
-import Section from "./ui/components/Section/Section";
-import transformAddress from "./core/models/address";
-import useAddressBook from "./ui/hooks/useAddressBook";
+import Address from '@/components/Address/Address';
+import AddressBook from '@/components/AddressBook/AddressBook';
+import Button from '@/components/Button/Button';
+import InputText from '@/components/InputText/InputText';
+import Radio from '@/components/Radio/Radio';
+import Section from '@/components/Section/Section';
+import useAddressBook from '@/hooks/useAddressBook';
 
-import * as styles from "../styles/App.module.css";
+import styles from './App.module.css';
+import { Address as AddressType } from './types';
 
 function App() {
   /**
@@ -20,16 +20,16 @@ function App() {
    * - Remove all individual React.useState
    * - Remove all individual onChange handlers, like handlePostCodeChange for example
    */
-  const [postCode, setPostCode] = React.useState("");
-  const [houseNumber, setHouseNumber] = React.useState("");
-  const [firstName, setFirstName] = React.useState("");
-  const [lastName, setLastName] = React.useState("");
-  const [selectedAddress, setSelectedAddress] = React.useState("");
+  const [postCode, setPostCode] = React.useState('');
+  const [houseNumber, setHouseNumber] = React.useState('');
+  const [firstName, setFirstName] = React.useState('');
+  const [lastName, setLastName] = React.useState('');
+  const [selectedAddress, setSelectedAddress] = React.useState('');
   /**
    * Results states
    */
-  const [error, setError] = React.useState(undefined);
-  const [addresses, setAddresses] = React.useState([]);
+  const [error, setError] = React.useState<undefined | string>(undefined);
+  const [addresses, setAddresses] = React.useState<AddressType[]>([]);
   /**
    * Redux actions
    */
@@ -38,17 +38,22 @@ function App() {
   /**
    * Text fields onChange handlers
    */
-  const handlePostCodeChange = (e) => setPostCode(e.target.value);
+  const handlePostCodeChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setPostCode(e.target.value);
 
-  const handleHouseNumberChange = (e) => setHouseNumber(e.target.value);
+  const handleHouseNumberChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setHouseNumber(e.target.value);
 
-  const handleFirstNameChange = (e) => setFirstName(e.target.value);
+  const handleFirstNameChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setFirstName(e.target.value);
 
-  const handleLastNameChange = (e) => setLastName(e.target.value);
+  const handleLastNameChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setLastName(e.target.value);
 
-  const handleSelectedAddressChange = (e) => setSelectedAddress(e.target.value);
+  const handleSelectedAddressChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setSelectedAddress(e.target.value);
 
-  const handleAddressSubmit = async (e) => {
+  const handleAddressSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     /** TODO: Fetch addresses based on houseNumber and postCode using the local BE api
@@ -60,19 +65,20 @@ function App() {
      */
   };
 
-  const handlePersonSubmit = (e) => {
+  const handlePersonSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!selectedAddress || !addresses.length) {
-      setError(
-        "No address selected, try to select an address or find one if you haven't"
-      );
+      setError("No address selected, try to select an address or find one if you haven't");
       return;
     }
 
-    const foundAddress = addresses.find(
-      (address) => address.id === selectedAddress
-    );
+    const foundAddress = addresses.find((address) => address.id === selectedAddress);
+
+    if (!foundAddress) {
+      setError('Selected address not found');
+      return;
+    }
 
     addAddress({ ...foundAddress, firstName, lastName });
   };
@@ -83,9 +89,7 @@ function App() {
         <h1>
           Create your own address book!
           <br />
-          <small>
-            Enter an address by postcode add personal info and done! 👏
-          </small>
+          <small>Enter an address by postcode add personal info and done! 👏</small>
         </h1>
         {/* TODO: Create generic <Form /> component to display form rows, legend and a submit button  */}
         <form onSubmit={handleAddressSubmit}>
@@ -119,7 +123,7 @@ function App() {
                 key={address.id}
                 onChange={handleSelectedAddressChange}
               >
-                <Address address={address} />
+                <Address {...address} />
               </Radio>
             );
           })}

@@ -1,7 +1,7 @@
-import localforage from "localforage";
+import localforage from 'localforage';
 
 const database = localforage.createInstance({
-  name: "address-book",
+  name: 'address-book'
 });
 
 export default database;
