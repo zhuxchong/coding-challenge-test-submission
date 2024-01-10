@@ -63,6 +63,7 @@ function App() {
      * - Handle errors if they occur
      * - Handle successful response by updating the `addresses` in the state using `setAddresses`
      * - Make sure to add the houseNumber to each found address in the response using `transformAddress()` function
+     * - Ensure to clear previous search results on each click
      * - Bonus: Add a loading state in the UI while fetching addresses
      */
   };
@@ -164,7 +165,12 @@ function App() {
         {/* TODO: Create an <ErrorMessage /> component for displaying an error message */}
         {error && <div className="error">{error}</div>}
 
-        {/* TODO: Add a button to clear all form fields. Button must look different from the default primary button, see design. */}
+        {/* TODO: Add a button to clear all form fields. 
+        Button must look different from the default primary button, see design. 
+        Button text name must be "Clear all fields"
+        On Click, it must clear all form fields, remove all search results and clear all prior
+        error messages
+        */}
       </Section>
 
       <Section variant="dark">
