@@ -1,15 +1,15 @@
-import React from 'react';
+import React from "react";
 
-import Address from '@/components/Address/Address';
-import AddressBook from '@/components/AddressBook/AddressBook';
-import Button from '@/components/Button/Button';
-import InputText from '@/components/InputText/InputText';
-import Radio from '@/components/Radio/Radio';
-import Section from '@/components/Section/Section';
-import useAddressBook from '@/hooks/useAddressBook';
+import Address from "@/components/Address/Address";
+import AddressBook from "@/components/AddressBook/AddressBook";
+import Button from "@/components/Button/Button";
+import InputText from "@/components/InputText/InputText";
+import Radio from "@/components/Radio/Radio";
+import Section from "@/components/Section/Section";
+import useAddressBook from "@/hooks/useAddressBook";
 
-import styles from './App.module.css';
-import { Address as AddressType } from './types';
+import styles from "./App.module.css";
+import { Address as AddressType } from "./types";
 
 function App() {
   /**
@@ -20,11 +20,11 @@ function App() {
    * - Remove all individual React.useState
    * - Remove all individual onChange handlers, like handlePostCodeChange for example
    */
-  const [postCode, setPostCode] = React.useState('');
-  const [houseNumber, setHouseNumber] = React.useState('');
-  const [firstName, setFirstName] = React.useState('');
-  const [lastName, setLastName] = React.useState('');
-  const [selectedAddress, setSelectedAddress] = React.useState('');
+  const [postCode, setPostCode] = React.useState("");
+  const [houseNumber, setHouseNumber] = React.useState("");
+  const [firstName, setFirstName] = React.useState("");
+  const [lastName, setLastName] = React.useState("");
+  const [selectedAddress, setSelectedAddress] = React.useState("");
   /**
    * Results states
    */
@@ -50,14 +50,16 @@ function App() {
   const handleLastNameChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setLastName(e.target.value);
 
-  const handleSelectedAddressChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setSelectedAddress(e.target.value);
+  const handleSelectedAddressChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => setSelectedAddress(e.target.value);
 
   const handleAddressSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     /** TODO: Fetch addresses based on houseNumber and postCode using the local BE api
-     * - Example URL of API: /api/getAddresses?postcode=1345&streetnumber=350
+     * - Example URL of API: ${process.env.NEXT_PUBLIC_URL}/api/getAddresses?postcode=1345&streetnumber=350
+     * - Ensure you provide a BASE URL for api endpoint for grading purposes!
      * - Handle errors if they occur
      * - Handle successful response by updating the `addresses` in the state using `setAddresses`
      * - Make sure to add the houseNumber to each found address in the response using `transformAddress()` function
@@ -69,14 +71,18 @@ function App() {
     e.preventDefault();
 
     if (!selectedAddress || !addresses.length) {
-      setError("No address selected, try to select an address or find one if you haven't");
+      setError(
+        "No address selected, try to select an address or find one if you haven't"
+      );
       return;
     }
 
-    const foundAddress = addresses.find((address) => address.id === selectedAddress);
+    const foundAddress = addresses.find(
+      (address) => address.id === selectedAddress
+    );
 
     if (!foundAddress) {
-      setError('Selected address not found');
+      setError("Selected address not found");
       return;
     }
 
@@ -89,7 +95,9 @@ function App() {
         <h1>
           Create your own address book!
           <br />
-          <small>Enter an address by postcode add personal info and done! 👏</small>
+          <small>
+            Enter an address by postcode add personal info and done! 👏
+          </small>
         </h1>
         {/* TODO: Create generic <Form /> component to display form rows, legend and a submit button  */}
         <form onSubmit={handleAddressSubmit}>
