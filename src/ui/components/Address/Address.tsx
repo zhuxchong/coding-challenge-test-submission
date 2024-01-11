@@ -1,6 +1,6 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent } from "react";
 
-import $ from './Address.module.css';
+import $ from "./Address.module.css";
 
 export interface AddressProps {
   street: string;
@@ -10,11 +10,8 @@ export interface AddressProps {
 }
 
 const Address: FunctionComponent<AddressProps> = (address) => {
-  return (
-    <address className={$.address}>
-      {address.street} {address.houseNumber}, {address.postcode}, {address.city}
-    </address>
-  );
+  const displayedAddress = `${address.street} ${address.houseNumber}, ${address.postcode}, ${address.city}`;
+  return <address className={$.address}>{displayedAddress}</address>;
 };
 
 export default Address;
