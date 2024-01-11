@@ -54,20 +54,22 @@ function App() {
     e: React.ChangeEvent<HTMLInputElement>
   ) => setSelectedAddress(e.target.value);
 
+  /** TODO: Fetch addresses based on houseNumber and postCode using the local BE api
+   * - Example URL of API: ${process.env.NEXT_PUBLIC_URL}/api/getAddresses?postcode=1345&streetnumber=350
+   * - Ensure you provide a BASE URL for api endpoint for grading purposes!
+   * - Handle errors if they occur
+   * - Handle successful response by updating the `addresses` in the state using `setAddresses`
+   * - Make sure to add the houseNumber to each found address in the response using `transformAddress()` function
+   * - Ensure to clear previous search results on each click
+   * - Bonus: Add a loading state in the UI while fetching addresses
+   */
   const handleAddressSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    /** TODO: Fetch addresses based on houseNumber and postCode using the local BE api
-     * - Example URL of API: ${process.env.NEXT_PUBLIC_URL}/api/getAddresses?postcode=1345&streetnumber=350
-     * - Ensure you provide a BASE URL for api endpoint for grading purposes!
-     * - Handle errors if they occur
-     * - Handle successful response by updating the `addresses` in the state using `setAddresses`
-     * - Make sure to add the houseNumber to each found address in the response using `transformAddress()` function
-     * - Ensure to clear previous search results on each click
-     * - Bonus: Add a loading state in the UI while fetching addresses
-     */
   };
 
+  /** TODO: Add basic validation to ensure first name and last name fields aren't empty
+   * Use the following error message setError("First name and last name fields mandatory!")
+   */
   const handlePersonSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
 

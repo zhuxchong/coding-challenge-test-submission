@@ -32,7 +32,8 @@ Here is a list of all the TODO's to make life a bit easier:
 - [ ] Create generic `<Form />` component to display form rows, legend and a submit button.
 - [ ] Create an `<ErrorMessage />` component for displaying an error message.
 - [ ] Add a button to clear all form fields. Button must look different from the default primary button, see design.
-- [ ] Add conditional classNames for `primary` and `secondary` variant in `<Button />` component
+- [ ] Add conditional classNames for `primary` and `secondary` variant in `<Button />` component\
+- [ ] Ensure form validations are applied in both "Find an Address" and "Add Personal Info to address" based on comments in TODO
 
 ## Typescript
 
