@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import App from '../src/App';
-import { store } from '@/app/store';
+import { store } from '../src/core/store/store';
 import reportWebVitals from '../src/reportWebVitals';
 
 export default function Home() {

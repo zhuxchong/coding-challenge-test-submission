@@ -3,10 +3,10 @@ import {
   removeAddress,
   selectAddress,
   updateAddresses
-} from '@/components/AddressBook/addressBookSlice';
+} from '../../core/reducers/addressBookSlice';
 import { Address } from '@/types';
 import React from 'react';
-import { useAppDispatch, useAppSelector } from '@/app/hooks';
+import { useAppDispatch, useAppSelector } from '../../core/store/hooks';
 
 import transformAddress from '../../core/models/address';
 import databaseService from '../../core/services/databaseService';
