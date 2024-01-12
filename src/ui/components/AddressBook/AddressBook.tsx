@@ -1,12 +1,12 @@
 import React from "react";
-import { useAppSelector } from "@/app/hooks";
+import { useAppSelector } from "../../../core/store/hooks";
 
 import useAddressBook from "../../hooks/useAddressBook";
 import Address from "../Address/Address";
 import Button from "../Button/Button";
 import Card from "../Card/Card";
 import $ from "./AddressBook.module.css";
-import { selectAddress } from "./addressBookSlice";
+import { selectAddress } from "../../../core/reducers/addressBookSlice";
 
 const AddressBook = () => {
   const addresses = useAppSelector(selectAddress);

@@ -1,4 +1,4 @@
-import addressBookSlice from '../ui/components/AddressBook/addressBookSlice';
+import addressBookSlice from '../reducers/addressBookSlice';
 import { configureStore } from '@reduxjs/toolkit';
 // ...
 
