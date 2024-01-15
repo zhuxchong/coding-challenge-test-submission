@@ -10,7 +10,7 @@ on:
         # Friendly description to be shown in the UI instead of 'name'
         description: "Submission URL"
         # Default value if no value is explicitly provided
-        default: "https://github.com/username/repo"
+        default: "{username/orgname}/{repo}"
         # Input has to be provided for the workflow to run
         required: true
 
@@ -24,6 +24,12 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     name: Grade Submission
     steps:
+      # checkout the solution branch
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: "solution"
+      # checkout the candidate's submission (default branch) into /tmp
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
