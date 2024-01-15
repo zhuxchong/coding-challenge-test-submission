@@ -60,3 +60,4 @@ jobs:
           subject: "Grading ${{ github.event.inputs.submissionUrl }}"
           to: ${{secrets.GRADER}}
           from: ${{secrets.GRADER}}
+          attachments: ./test-report.html
