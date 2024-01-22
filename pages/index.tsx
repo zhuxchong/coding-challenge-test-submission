@@ -1,8 +1,8 @@
-import React from 'react';
-import { Provider } from 'react-redux';
-import App from '../src/App';
-import { store } from '../src/core/store/store';
-import reportWebVitals from '../src/reportWebVitals';
+import React from "react";
+import { Provider } from "react-redux";
+import App from "../src/App";
+import store from "../src/core/store";
+import reportWebVitals from "../src/reportWebVitals";
 
 export default function Home() {
   return (
