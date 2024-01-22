@@ -50,6 +50,12 @@ jobs:
         run: npm install
       - name: Grade solution
         run: npm run test
+      - name: Run Cypress CSS grading
+        uses: cypress-io/github-action@v6
+        with:
+          build: npm run build
+          start: npm start
+          wait-on: "http://localhost:3000"
       - name: Send mail
         uses: dawidd6/action-send-mail@v3
         with:
@@ -60,4 +66,5 @@ jobs:
           subject: "Grading ${{ github.event.inputs.submissionUrl }}"
           to: ${{secrets.GRADER}}
           from: ${{secrets.GRADER}}
+          body: Grading of submission ${{ github.event.inputs.submissionUrl }} has completed. Find following results attached and CSS results are ${{ steps.cypress.outcome }}
           attachments: ./test-report.html
