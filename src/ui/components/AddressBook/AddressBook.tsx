@@ -1,5 +1,7 @@
 import React from "react";
 import { useAppSelector } from "../../../core/store/hooks";
+import { motion, AnimatePresence } from "framer-motion";
+import Typography from "../Typography/Typography";
 
 import useAddressBook from "../../hooks/useAddressBook";
 import Address from "../Address/Address";
@@ -20,32 +22,43 @@ const AddressBook = () => {
 
   return (
     <section className={$.addressBook}>
-      <h2>{addressBookTitle}</h2>
+      <Typography variant="h2" theme="dark">{addressBookTitle}</Typography>
       {!loading && (
         <>
-          {addresses.length === 0 && <p>No addresses found, try add one 😉</p>}
-          {addresses.map((address, index) => {
-            return (
-              <Card key={address.id}>
-                <div data-testid={`address-${index}`} className={$.item}>
-                  <div>
-                    <h3>
-                      {address.firstName} {address.lastName}
-                    </h3>
-                    <Address {...address} />
-                  </div>
-                  <div className={$.remove}>
-                    <Button
-                      variant="secondary"
-                      onClick={() => removeAddress(address.id)}
-                    >
-                      Remove
-                    </Button>
-                  </div>
-                </div>
-              </Card>
-            );
-          })}
+          {addresses.length === 0 && <Typography variant="body" theme="dark">No addresses found, try add one 😉</Typography>}
+          <AnimatePresence>
+            {addresses.map((address, index) => {
+              return (
+                <motion.div
+                  key={address.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, x: -100 }}
+                  transition={{ duration: 0.3, delay: index * 0.05 }}
+                  layout
+                >
+                  <Card>
+                    <div data-testid={`address-${index}`} className={$.item}>
+                      <div>
+                        <Typography variant="h3" theme="light">
+                          {address.firstName} {address.lastName}
+                        </Typography>
+                        <Address {...address} />
+                      </div>
+                      <div className={$.remove}>
+                        <Button
+                          variant="secondary"
+                          onClick={() => removeAddress(address.id)}
+                        >
+                          Remove
+                        </Button>
+                      </div>
+                    </div>
+                  </Card>
+                </motion.div>
+              );
+            })}
+          </AnimatePresence>
         </>
       )}
     </section>

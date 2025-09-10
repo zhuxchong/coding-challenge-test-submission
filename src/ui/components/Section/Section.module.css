@@ -4,9 +4,25 @@
   box-shadow: 0 15px 15px rgba(0, 0, 0, 0.15);
   color: var(--color-text);
   margin: 3rem auto;
-  max-width: var(--width-content);
+  /* max-width: var(--width-content); */
+  width: var(--width-content);
   padding: 2rem 3rem;
-  width: 100%;
+  transition: var(--transition-responsive);
+}
+
+@media (max-width: 640px) {
+  .section {
+    margin: 1.5rem auto;
+    padding: 1.5rem;
+    border-radius: var(--border-radius-default);
+  }
+}
+
+@media (min-width: 640px) and (max-width: 768px) {
+  .section {
+    margin: 2rem auto;
+    padding: 1.5rem 2rem;
+  }
 }
 
 .dark {

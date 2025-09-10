@@ -6,6 +6,7 @@ import Button from "@/components/Button/Button";
 import InputText from "@/components/InputText/InputText";
 import Radio from "@/components/Radio/Radio";
 import Section from "@/components/Section/Section";
+import Typography from "@/components/Typography/Typography";
 import useAddressBook from "@/hooks/useAddressBook";
 
 import styles from "./App.module.css";
@@ -95,17 +96,24 @@ function App() {
   return (
     <main>
       <Section>
-        <h1>
+        <Typography variant="h1" theme="light">
           Create your own address book!
           <br />
-          <small>
+          <Typography variant="caption" theme="light" component="small">
             Enter an address by postcode add personal info and done! 👏
-          </small>
-        </h1>
+          </Typography>
+        </Typography>
         {/* TODO: Create generic <Form /> component to display form rows, legend and a submit button  */}
-        <form onSubmit={handleAddressSubmit}>
+        <form onSubmit={handleAddressSubmit} className={styles.form}>
           <fieldset>
-            <legend>🏠 Find an address</legend>
+            <Typography
+              variant="label"
+              theme="light"
+              component="legend"
+              className={styles.formTitle}
+            >
+              🏠 Find an address
+            </Typography>
             <div className={styles.formRow}>
               <InputText
                 name="postCode"
@@ -142,7 +150,9 @@ function App() {
         {selectedAddress && (
           <form onSubmit={handlePersonSubmit}>
             <fieldset>
-              <legend>✏️ Add personal info to address</legend>
+              <Typography variant="label" theme="light" component="legend">
+                ✏️ Add personal info to address
+              </Typography>
               <div className={styles.formRow}>
                 <InputText
                   name="firstName"

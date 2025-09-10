@@ -16,6 +16,7 @@
     "@reduxjs/toolkit": "^2.0.1",
     "address-book": "^1.2.2",
     "classnames": "^2.5.1",
+    "framer-motion": "^12.23.12",
     "localforage": "^1.10.0",
     "next": "latest",
     "react": "^18.2.0",

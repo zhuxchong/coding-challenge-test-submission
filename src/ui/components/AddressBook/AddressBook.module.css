@@ -15,8 +15,15 @@
   gap: 1rem;
 }
 
+@media (max-width: 640px) {
+  .item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
 .item address {
-  font-size: 0.85em;
+  font-size: var(--font-size-small);
 }
 
 .item h3 {

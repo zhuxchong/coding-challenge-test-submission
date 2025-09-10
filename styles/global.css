@@ -1,31 +1,124 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
-    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
 }
 
-/* TODO: Add the 'Roboto' font from Google fonts and add it as a global CSS var called `--font-primary` */
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("/fonts/roboto-300.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Roboto";
+  font-style: italic;
+  font-weight: 300;
+  font-display: swap;
+  src: url("/fonts/roboto-300-italic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/roboto-400.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Roboto";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/roboto-400-italic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/roboto-500.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Roboto";
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/roboto-500-italic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/roboto-700.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Roboto";
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/roboto-700-italic.woff2") format("woff2");
+}
 /* TODO: Make application responsive. It is already for the most part, but it is not optimal for smaller screens.
 * - Making the application responsive using the Mobile First principle.
 */
 
 :root {
+  --font-primary: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  
+  /* Typography */
+  --font-size-h1: 2rem;
+  --font-size-h2: 1.5rem;
+  --font-size-h3: 1.25rem;
+  --font-size-body: 16px;
+  --font-size-small: 0.85em;
+  --font-size-caption: 0.65em;
+  --font-size-button: 0.9em;
+  --font-weight-normal: normal;
+  --font-weight-bold: bold;
+  
+  /* Layout */
   --border-radius-default: 4px;
   --border-radius-xl: 15px;
+  --width-input: 100%;
+  --width-content: 30rem;
+  --transition-responsive: width 0.5s ease-in-out, padding 0.5s ease-in-out,
+    margin 0.5s ease-in-out, border-radius 0.5s ease-in-out;
+  
+  /* Light Theme (default) */
   --color-accent: #cacfdd;
   --color-background: #fff;
   --color-border: #bbb;
   --color-brand: #413ef7;
   --color-text: #141925;
   --color-text-light: #72787d;
-  --width-input: 20rem;
-  --width-content: 30rem;
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+  --color-accent: #2a2d3a;
+  --color-background: #141925;
+  --color-border: #4a5568;
+  --color-text: #fff;
+  --color-text-light: #878b9a;
 }
 
 * {
@@ -34,7 +127,7 @@ code {
 
 body {
   accent-color: var(--color-brand);
-  font-size: 18px;
+  font-size: var(--font-size-body);
   font-family: var(--font-primary);
   background: var(--color-accent);
 }
@@ -44,8 +137,8 @@ main {
 }
 
 small {
-  font-weight: normal;
-  font-size: 0.65em;
+  font-weight: var(--font-weight-normal);
+  font-size: var(--font-size-caption);
   color: var(--color-text-light);
 }
 
@@ -61,4 +154,32 @@ fieldset {
 
 legend {
   color: var(--color-text-light);
+}
+
+@media (max-width: 640px) {
+  :root {
+    --font-size-h1: 1.75rem;
+    --font-size-h2: 1.25rem;
+    --font-size-h3: 1.125rem;
+    --width-content: 100%;
+  }
+
+  body {
+    font-size: 14px;
+  }
+
+  main {
+    padding: 1rem;
+  }
+
+  fieldset {
+    margin: 1rem 0;
+    padding: 0.75rem 0;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 768px) {
+  main {
+    padding: 1.5rem;
+  }
 }
