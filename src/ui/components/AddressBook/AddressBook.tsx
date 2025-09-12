@@ -13,7 +13,13 @@ import { selectAddress } from "../../../core/reducers/addressBookSlice";
 const AddressBook = () => {
   const addresses = useAppSelector(selectAddress);
   const { removeAddress, loadSavedAddresses, loading } = useAddressBook();
-  const addressBookTitle = `📓 Address book (${addresses.length})`;
+
+  //(newest first)
+  const sortedAddresses = React.useMemo(() => {
+    return [...addresses].reverse();
+  }, [addresses]);
+
+  const addressBookTitle = `📓 Address book (${sortedAddresses.length})`;
 
   React.useEffect(() => {
     loadSavedAddresses();
@@ -22,12 +28,18 @@ const AddressBook = () => {
 
   return (
     <section className={$.addressBook}>
-      <Typography variant="h2" theme="dark">{addressBookTitle}</Typography>
+      <Typography variant="h2" theme="dark">
+        {addressBookTitle}
+      </Typography>
       {!loading && (
         <>
-          {addresses.length === 0 && <Typography variant="body" theme="dark">No addresses found, try add one 😉</Typography>}
+          {sortedAddresses.length === 0 && (
+            <Typography variant="body" theme="dark">
+              No addresses found, try add one 😉
+            </Typography>
+          )}
           <AnimatePresence>
-            {addresses.map((address, index) => {
+            {sortedAddresses.map((address, index) => {
               return (
                 <motion.div
                   key={address.id}

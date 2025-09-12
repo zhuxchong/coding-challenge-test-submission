@@ -1,0 +1,21 @@
+.formRow {
+  margin-bottom: 1rem;
+}
+
+.label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: var(--font-weight-normal);
+  color: var(--color-text);
+}
+
+.required {
+  color: red;
+  margin-left: 0.25rem;
+}
+
+.error {
+  color: red;
+  font-size: var(--font-size-small);
+  margin-top: 0.25rem;
+}

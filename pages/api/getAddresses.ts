@@ -13,6 +13,7 @@ export default async function handle(
   if (!postcode || !streetnumber) {
     return res.status(400).send({
       status: "error",
+      code: 10001,
       // DO NOT MODIFY MSG - used for grading
       errormessage: "Postcode and street number fields mandatory!",
     });
@@ -21,6 +22,7 @@ export default async function handle(
   if (postcode.length < 4) {
     return res.status(400).send({
       status: "error",
+      code: 10002,
       // DO NOT MODIFY MSG - used for grading
       errormessage: "Postcode must be at least 4 digits!",
     });
@@ -30,13 +32,16 @@ export default async function handle(
    *  is all digits and non negative
    */
   const isStrictlyNumeric = (value: string) => {
-    return true;
+    const isAllDigits = /^\d+$/.test(value);
+    const isNonNegative = !isNaN(Number(value)) && Number(value) >= 0;
+    return isAllDigits && isNonNegative;
   };
 
   /** TODO: Refactor the code below so there is no duplication of logic for postCode/streetNumber digit checks. */
   if (!isStrictlyNumeric(postcode as string)) {
     return res.status(400).send({
       status: "error",
+      code: 10003,
       errormessage: "Postcode must be all digits and non negative!",
     });
   }
@@ -44,6 +49,7 @@ export default async function handle(
   if (!isStrictlyNumeric(streetnumber as string)) {
     return res.status(400).send({
       status: "error",
+      code: 10004,
       errormessage: "Street Number must be all digits and non negative!",
     });
   }

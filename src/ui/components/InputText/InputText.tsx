@@ -7,6 +7,7 @@ interface InputTextProps {
   placeholder: string;
   value: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  id?: string;
 }
 
 const InputText: FunctionComponent<InputTextProps> = ({
@@ -14,9 +15,11 @@ const InputText: FunctionComponent<InputTextProps> = ({
   onChange,
   placeholder,
   value,
+  id,
 }) => {
   return (
     <input
+      id={id}
       aria-label={name}
       className={$.inputText}
       name={name}

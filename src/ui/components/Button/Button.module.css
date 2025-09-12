@@ -23,3 +23,39 @@
 /** TODO: Create separate styles for .primary and .secondary variants of this button:
 * - Must use the CSS variables declared in App.css
 */
+
+.primary {
+  background-color: var(--color-brand);
+  border: 2px solid var(--color-brand);
+  color: white;
+}
+
+.primary:hover {
+  background-color: color-mix(in srgb, var(--color-brand) 85%, black);
+  border-color: color-mix(in srgb, var(--color-brand) 85%, black);
+}
+
+.secondary {
+  background-color: transparent;
+  border: 2px solid var(--color-brand);
+  color: var(--color-brand);
+}
+
+.secondary:hover {
+  background-color: var(--color-brand);
+  color: white;
+}
+
+.spinner {
+  height: 1em;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  vertical-align: middle;
+  overflow: hidden;
+}
+
+.secondary .spinner {
+  border-color: rgba(65, 62, 247, 0.3);
+  border-top-color: var(--color-brand);
+}

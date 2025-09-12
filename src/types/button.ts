@@ -1,4 +1,5 @@
 import { ButtonHTMLAttributes } from 'react';
 
-export type ButtonType = any;
+// ButtonType should only include all possible HTML button types
+export type ButtonType = 'button' | 'submit' | 'reset';
 export type ButtonVariant = 'primary' | 'secondary';
