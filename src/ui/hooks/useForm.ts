@@ -50,11 +50,12 @@ function useForm<T extends FormValues>(initialValues: T, rules?: FormRules) {
       const allRules = { ...fieldRulesRef.current, ...rules };
       if (!allRules || !allRules[name]) return undefined;
 
-      const fieldRuleList = Array.isArray(allRules[name])
-        ? allRules[name]
-        : [allRules[name]];
+      const rulesForField = allRules[name];
+      const fieldRuleList = Array.isArray(rulesForField)
+        ? rulesForField
+        : [rulesForField];
 
-      for (const rule of fieldRuleList) {
+      for (const rule of fieldRuleList as Rule[]) {
         if (rule.required && (!value || value === "")) {
           return { message: rule.message || `${name} is required` };
         }
@@ -246,7 +247,7 @@ function useForm<T extends FormValues>(initialValues: T, rules?: FormRules) {
 
   const getFieldError = useCallback((name: string): string | undefined => {
     return touchedRef.current.has(name) && errorsRef.current[name]
-      ? errorsRef.current[name].message
+      ? errorsRef.current[name]?.message
       : undefined;
   }, []);
 
