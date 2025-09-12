@@ -167,8 +167,11 @@ function AddressForm() {
           label="Post Code"
           rules={[
             { required: true, message: "Postcode is required" },
-            { min: 4, message: "Postcode must be at least 4 digits" },
-            { type: "number", message: "Postcode must be all digits" },
+            { min: 4, message: "Postcode must be at least 4 digits!" },
+            {
+              pattern: /^\d+$/,
+              message: "Postcode must be all digits and non negative!",
+            },
           ]}
         >
           {({ value, onChange, error, id }) => (
@@ -186,7 +189,10 @@ function AddressForm() {
           label="House Number"
           rules={[
             { required: true, message: "House number is required" },
-            { type: "number", message: "House number must be all digits" },
+            {
+              pattern: /^\d+$/,
+              message: "Street Number must be all digits and non negative!",
+            },
           ]}
         >
           {({ value, onChange, error, id }) => {
