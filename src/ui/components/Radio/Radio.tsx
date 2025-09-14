@@ -17,8 +17,15 @@ const Radio: FunctionComponent<RadioProps> = ({
   onChange,
   checked,
 }) => {
+  const handleDivClick = () => {
+    const input = document.getElementById(id) as HTMLInputElement;
+    if (input && !checked) {
+      input.click();
+    }
+  };
+
   return (
-    <div className={$.radio}>
+    <div className={$.radio} onClick={handleDivClick}>
       <input
         type="radio"
         id={id}
@@ -26,8 +33,9 @@ const Radio: FunctionComponent<RadioProps> = ({
         onChange={onChange}
         value={id}
         checked={checked}
+        onClick={(e) => e.stopPropagation()}
       />
-      <label htmlFor={id} className="text1">
+      <label htmlFor={id} className="text1" onClick={(e) => e.stopPropagation()}>
         {children}
       </label>
     </div>
