@@ -18,7 +18,7 @@ const Button: FunctionComponent<ButtonProps> = ({
   onClick,
   type = "button",
   variant = "primary",
-  loading = false,
+  loading,
 }) => {
   return (
     <button
@@ -26,13 +26,10 @@ const Button: FunctionComponent<ButtonProps> = ({
       // - Must have a condition to set the '.primary' className
       // - Must have a condition to set the '.secondary' className
       // - Display loading spinner per demo video. NOTE: add data-testid="loading-spinner" for spinner element (used for grading)
-      className={cx(
-        $.button,
-        {
-          [$.primary]: variant === "primary",
-          [$.secondary]: variant === "secondary"
-        }
-      )}
+      className={cx($.button, {
+        [$.primary]: variant === "primary",
+        [$.secondary]: variant === "secondary",
+      })}
       type={type}
       onClick={onClick}
       disabled={loading}
@@ -40,26 +37,26 @@ const Button: FunctionComponent<ButtonProps> = ({
       <motion.span
         className={$.spinner}
         data-testid="loading-spinner"
-        initial={{ opacity: 0, scale: 0.8, width: 0 }}
-        animate={{ 
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{
           opacity: loading ? 1 : 0,
           scale: loading ? 1 : 0.8,
-          width: loading ? "1.5em" : 0,
-          rotate: loading ? 360 : 0
+          rotate: loading ? 360 : 0,
         }}
         transition={{
           opacity: { duration: 0.2 },
           scale: { duration: 0.2 },
-          width: { duration: 0.2 },
-          rotate: { 
-            duration: 0.6, 
+          rotate: {
+            duration: 0.6,
             repeat: loading ? Infinity : 0,
-            ease: "linear"
-          }
+            ease: "linear",
+          },
         }}
-        style={{ 
-          display: "inline-block",
-          marginRight: loading ? "0.5em" : 0
+        style={{
+          display: loading ? "inline-block" : "none",
+          width: loading ? "1em" : 0,
+          height: loading ? "1em" : 0,
+          marginRight: loading ? "0.5em" : 0,
         }}
       />
       {children}
