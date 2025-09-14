@@ -83,20 +83,27 @@ function AddressForm() {
         // Set field-specific errors based on error code
         switch (err.code) {
           case 10001:
-            addressForm.setFieldError("postCode", "Postcode is required");
+            addressForm.setFieldError(
+              "postCode",
+              "Postcode and street number fields mandatory!"
+            );
             addressForm.setFieldError(
               "houseNumber",
-              "House number is required"
+              "Postcode and street number fields mandatory!"
             );
+            setError(err.message);
             break;
           case 10002:
             addressForm.setFieldError("postCode", err.message);
+            setError(err.message);
             break;
           case 10003:
             addressForm.setFieldError("postCode", err.message);
+            setError(err.message);
             break;
           case 10004:
             addressForm.setFieldError("houseNumber", err.message);
+            setError(err.message);
             break;
           default:
             setError(err.message);
