@@ -2,6 +2,26 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 import generateMockAddresses from "../../src/utils/generateMockAddresses";
 
+interface ErrorOptions {
+  res: NextApiResponse;
+  code: number;
+  errormessage: string;
+  statusCode?: number;
+}
+
+const sendError = ({
+  res,
+  code,
+  errormessage,
+  statusCode = 400,
+}: ErrorOptions) => {
+  return res.status(statusCode).send({
+    status: "error",
+    code,
+    errormessage,
+  });
+};
+
 export default async function handle(
   req: NextApiRequest,
   res: NextApiResponse
@@ -39,16 +59,16 @@ export default async function handle(
 
   /** TODO: Refactor the code below so there is no duplication of logic for postCode/streetNumber digit checks. */
   if (!isStrictlyNumeric(postcode as string)) {
-    return res.status(400).send({
-      status: "error",
+    return sendError({
+      res,
       code: 10003,
       errormessage: "Postcode must be all digits and non negative!",
     });
   }
 
   if (!isStrictlyNumeric(streetnumber as string)) {
-    return res.status(400).send({
-      status: "error",
+    return sendError({
+      res,
       code: 10004,
       errormessage: "Street Number must be all digits and non negative!",
     });
