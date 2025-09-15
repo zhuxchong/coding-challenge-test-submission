@@ -100,6 +100,19 @@ class ApiService {
       method: "GET",
     });
   }
+
+  async post<T = any>(url: string, data?: any): Promise<T> {
+    return this.request<T>(url, {
+      method: "POST",
+      body: data ? JSON.stringify(data) : undefined,
+    });
+  }
+
+  async delete<T = any>(url: string): Promise<T> {
+    return this.request<T>(url, {
+      method: "DELETE",
+    });
+  }
 }
 
 const apiService = new ApiService();
