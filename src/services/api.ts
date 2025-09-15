@@ -81,24 +81,29 @@ class ApiService {
   }
 
   async get<T = any>(url: string, params?: Record<string, any>): Promise<T> {
-    let queryString = "";
+    try {
+      let queryString = "";
 
-    if (params) {
-      const searchParams = new URLSearchParams();
-      Object.keys(params).forEach((key) => {
-        if (params[key] !== undefined && params[key] !== null) {
-          searchParams.append(key, params[key]);
+      if (params) {
+        const searchParams = new URLSearchParams();
+        Object.keys(params).forEach((key) => {
+          if (params[key] !== undefined && params[key] !== null) {
+            searchParams.append(key, params[key]);
+          }
+        });
+        queryString = searchParams.toString();
+        if (queryString) {
+          queryString = `?${queryString}`;
         }
-      });
-      queryString = searchParams.toString();
-      if (queryString) {
-        queryString = `?${queryString}`;
       }
-    }
 
-    return this.request<T>(`${url}${queryString}`, {
-      method: "GET",
-    });
+      return this.request<T>(`${url}${queryString}`, {
+        method: "GET",
+      });
+    } catch (error) {
+      console.error(`GET request failed for ${url}:`, error);
+      throw error;
+    }
   }
 
   async post<T = any>(url: string, data?: any): Promise<T> {
